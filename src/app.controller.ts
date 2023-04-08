@@ -5,8 +5,9 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('/healthcheck')
+  healthcheck(): string {
+    console.log(`${process.env.MOENIX_DEPLOYMENT_NAME} is healthy`);
+    return this.appService.getHealthcheck();
   }
 }
